@@ -18,10 +18,13 @@ typedef std::uint_fast32_t uint32;
 class DrawableBoard : public sf::Drawable
 {
 public:
-    DrawableBoard(sf::Vector2i, int size);
+    DrawableBoard(sf::Vector2i position, int size) : UNIT(size / 8)
+    {
+        // TODO
+    }
     
 private:    
-    int unit;
+    const int UNIT;
 
     // DEFINITIONS
     static constexpr int WHITE = 0b0000;
@@ -190,7 +193,13 @@ private:
 
 
     // GRAPHICAL MEMBERS
-    
+    sf::Texture peiceTextures[15];
+
+    sf::Sprite peiceSprites[64];
+
+    sf::Texture checkerBoardTexture;
+
+    sf::Sprite checkerBoardSprite;
 
 
     // BOARD METHODS
