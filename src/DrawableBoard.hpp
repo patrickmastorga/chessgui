@@ -2,7 +2,6 @@
 #include <cstdint>
 #include <optional>
 #include <vector>
-#include <unordered_set>
 #include <stack>
 #include <forward_list>
 #include <algorithm>
@@ -26,8 +25,6 @@
 #define DARK_PREVIOUS_MOVE LIGHT_PREVIOUS_MOVE
 
 typedef std::uint_fast64_t uint64;
-typedef std::uint_fast32_t uint32;
-
 
 class DrawableBoard : public sf::Drawable
 {
@@ -148,6 +145,25 @@ public:
 
         resetSquareHighlights();
     }
+
+    int colorToMove() noexcept
+    {
+        return 1 - 2 * (totalHalfmoves % 2);
+    }
+    
+    std::optional<int> gameOver() noexcept
+    {
+        if (isDraw()) {
+            return 0;
+        }
+
+        if (currentLegalMoves.size() == 0) {
+            return inCheck() ? -colorToMove() : 0;
+        }
+
+        return std::nullopt;
+    }
+    
 
 private:    
     // DEFINITIONS
