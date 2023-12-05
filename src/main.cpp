@@ -9,7 +9,6 @@ int main()
     DrawableBoard board(sf::Vector2f(0, 0), true);
 
     bool mouseHold = false;
-    bool validPeiceSelected = false;
 
     while (window.isOpen())
     {

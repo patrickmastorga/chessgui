@@ -1418,25 +1418,25 @@ private:
     {
         // Color squares default color
         for (int i = 0; i < 64; ++i) {
-            squareSprites[i].setFillColor(((i + (i / 8) % 2) % 2 == 0) ? LIGHT_SQUARE_COLOR : DARK_SQUARE_COLOR);
+            squareSprites[i].setFillColor(((i + (i / 8) % 2) % 2 == 1) ? LIGHT_SQUARE_COLOR : DARK_SQUARE_COLOR);
         }
 
         // Add highlights where needed
         if (!previousMove.empty()) {
             int s = previousMove.top().start();
             int t = previousMove.top().target();
-            squareSprites[s].setFillColor(((s + (s / 8) % 2) % 2 == 0) ? LIGHT_PREVIOUS_MOVE : DARK_PREVIOUS_MOVE);
-            squareSprites[t].setFillColor(((t + (t / 8) % 2) % 2 == 0) ? LIGHT_PREVIOUS_MOVE : DARK_PREVIOUS_MOVE);
+            squareSprites[s].setFillColor(((s + (s / 8) % 2) % 2 == 1) ? LIGHT_PREVIOUS_MOVE : DARK_PREVIOUS_MOVE);
+            squareSprites[t].setFillColor(((t + (t / 8) % 2) % 2 == 1) ? LIGHT_PREVIOUS_MOVE : DARK_PREVIOUS_MOVE);
         }
 
         if (currentlySelected.has_value()) {
             int s = currentlySelected.value();
-            squareSprites[s].setFillColor(((s + (s / 8) % 2) % 2 == 0) ? LIGHT_CURRENTLY_SELECTED : DARK_CURRENTLY_SELECTED);
+            squareSprites[s].setFillColor(((s + (s / 8) % 2) % 2 == 1) ? LIGHT_CURRENTLY_SELECTED : DARK_CURRENTLY_SELECTED);
 
             for (Move &move : currentLegalMoves) {
                 if (move.start() == s) {
                     int t = move.target();
-                    squareSprites[t].setFillColor(((t + (t / 8) % 2) % 2 == 0) ? LIGHT_AVAILABLE_TARGET : DARK_AVAILABLE_TARGET);
+                    squareSprites[t].setFillColor(((t + (t / 8) % 2) % 2 == 1) ? LIGHT_AVAILABLE_TARGET : DARK_AVAILABLE_TARGET);
                 }
             }
         }
